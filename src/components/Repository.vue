@@ -5,7 +5,6 @@
 <script lang="ts">
 import { gql } from "apollo-boost";
 import Vue from "vue";
-import Highcharts from "highcharts";
 
 export default Vue.extend({
   name: "Repository",

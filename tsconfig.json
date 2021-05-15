@@ -8,5 +8,8 @@
 	  "module": "es2015",
 	  "moduleResolution": "node",
 	  "allowSyntheticDefaultImports": true,
+	  "typeRoots": [
+		"./node_modules/vuetify/types"
+	  ],
 	}
   }
