@@ -1,15 +1,21 @@
 <template>
-  <v-card class="mx-auto" max-width="344">
+  <v-skeleton-loader
+    v-if="!user"
+    class="mx-auto"
+    max-width="400"
+    type="card, list-item-two-line"
+  ></v-skeleton-loader>
+  <v-card v-else class="mx-auto" max-width="400">
     <v-avatar color="grey" size="200">
       <v-img :src="user.avatarUrl"></v-img>
     </v-avatar>
     <v-card-subtitle class="text-center">
-      {{user.name}}
+      {{ user.name }}
     </v-card-subtitle>
-    <v-chip>{{user.email}}</v-chip>
+    <v-chip>{{ user.email }}</v-chip>
     <v-divider class="mx-2"></v-divider>
     <v-card-subtitle>
-      {{user.bio}}
+      {{ user.bio }}
     </v-card-subtitle>
   </v-card>
 </template>
@@ -24,9 +30,7 @@ export default Vue.extend({
     msg: String,
   },
   data: {
-    user: {
-      avatarUrl:''
-    },
+    user: null,
   },
   apollo: {
     user: {

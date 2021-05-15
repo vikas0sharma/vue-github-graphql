@@ -12,7 +12,7 @@ Vue.config.productionTip = false;
 const apolloClient = new ApolloClient({
   uri: 'https://api.github.com/graphql',
   request: (operation: Operation) => {
-    const token = '';
+    const token = process.env.VUE_APP_GITHUB_API_KEY;
     operation.setContext({
       headers: {
         authorization: token ? `Bearer ${token}` : ''
