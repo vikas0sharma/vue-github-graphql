@@ -2,6 +2,7 @@
   <div id="app">
     <Profile msg="Hello Vue in CodeSandbox!" />
     <Contribution/>
+    <Repository/>
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 import Vue from 'vue'
 import Profile from "./components/Profile.vue";
 import Contribution from "./components/Contribution.vue";
+import Repository from "./components/Repository.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
     Profile,
-    Contribution
+    Contribution,
+    Repository
   }
 });
 </script>

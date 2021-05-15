@@ -2,9 +2,11 @@ import ApolloClient, { Operation } from "apollo-boost";
 import Vue from "vue";
 import VueApollo from 'vue-apollo'
 import App from './App.vue';
-import vuetify from './vuetify'
+import vuetify from './vuetify';
+import HighchartsVue from 'highcharts-vue';
 
 Vue.use(VueApollo);
+Vue.use(HighchartsVue);
 
 Vue.config.productionTip = false;
 
