@@ -29,9 +29,9 @@ export default Vue.extend({
   props: {
     msg: String,
   },
-  data: {
+  data: ()=> ({
     user: null,
-  },
+  }),
   apollo: {
     user: {
       query: gql`
