@@ -58,6 +58,8 @@ export default Vue.extend({
   },
 });
 </script>
-
 <style>
+.v-btn.v-btn--icon.v-btn--round {
+  cursor: pointer;
+}
 </style>
