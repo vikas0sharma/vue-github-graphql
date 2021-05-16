@@ -1,29 +1,21 @@
 <template>
   <v-app id="app">
     <Toolbar/>
-    <Profile msg="Hello Vue in CodeSandbox!" />
-    <Contribution/>
-    <Repository/>
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script lang="ts" >
 import Vue from 'vue'
 import Toolbar from "./components/Toolbar.vue";
-import Profile from "./components/Profile.vue";
-import Contribution from "./components/Contribution.vue";
-import Repository from "./components/Repository.vue";
-
 
 export default Vue.extend({
   name: "App",
   components: {
-    Toolbar,
-    Profile,
-    Contribution,
-    Repository
+    Toolbar
   }
 });
+
 </script>
 
 <style>

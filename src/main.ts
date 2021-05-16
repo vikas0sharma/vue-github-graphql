@@ -4,6 +4,7 @@ import VueApollo from 'vue-apollo'
 import App from './App.vue';
 import vuetify from './vuetify';
 import HighchartsVue from 'highcharts-vue';
+import router from './router';
 import './resources/sass/main.scss';
 
 Vue.use(VueApollo);
@@ -37,5 +38,6 @@ const apolloProvider = new VueApollo({
 new Vue({
   render: h => h(App),
   apolloProvider,
-  vuetify
+  vuetify,
+  router
 }).$mount("#app");

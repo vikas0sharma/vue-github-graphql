@@ -59,4 +59,7 @@ export default Vue.extend({
 </script>
 
 <style>
+.highcharts-credits {
+  display: none !important;
+}
 </style>

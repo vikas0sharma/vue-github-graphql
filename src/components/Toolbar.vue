@@ -10,16 +10,25 @@
         single-line
         append-icon="mdi-magnify"
       ></v-text-field>
-      <v-btn icon>
+
+      <v-btn class="ml-5" icon to="/">
         <v-icon color="primary">mdi-account</v-icon>
       </v-btn>
-      <v-btn icon>
+
+      <v-btn icon to="/contribution">
         <v-icon>mdi-chart-bell-curve</v-icon>
       </v-btn>
-      <v-btn icon>
+
+      <v-btn icon to="/repository">
         <v-icon color="red darken-2">mdi-source-repository</v-icon>
       </v-btn>
-      <v-btn color="black" icon>
+
+      <v-btn
+        color="black"
+        icon
+        href="https://github.com/vikas0sharma/vue-github-graphql"
+        target="_blank"
+      >
         <v-icon>mdi-github</v-icon>
       </v-btn>
 
