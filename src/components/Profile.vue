@@ -34,7 +34,13 @@ export default Vue.extend({
   },
   data: () => ({
     user: null,
+    userName: "vikas0sharma",
   }),
+  mounted() {
+    this.$root.$on("search", (user: string) => {
+      this.userName = user;
+    });
+  },
   apollo: {
     user: {
       query: gql`
@@ -47,8 +53,8 @@ export default Vue.extend({
           }
         }
       `,
-      variables: {
-        id: "vikas0sharma",
+      variables: function () {
+        return { id: this.userName };
       },
     },
   },

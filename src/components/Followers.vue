@@ -24,6 +24,7 @@ export default Vue.extend({
   components: {},
   data: () => ({
     user: <any>null,
+    userName:'vikas0sharma',
     graph: {
       chart: {
         type: "networkgraph",
@@ -64,10 +65,16 @@ export default Vue.extend({
       ],
     },
   }),
+  mounted() {
+    this.$root.$on("search", (user: string) => {
+      this.userName = user;
+    });
+  },
   watch: {
     user: function (user, o) {
       const array: { from: string; to: string }[] = [];
       console.time("recursion");
+      //@ts-ignore
       this.traverseFollowers(user, array);
       console.timeEnd("recursion");
       console.log(array);
@@ -85,6 +92,7 @@ export default Vue.extend({
         for (const node of obj.followers.nodes) {
           array.push({ from: obj.login, to: node.login });
           if (node.followers) {
+            //@ts-ignore
             this.traverseFollowers(node, array);
           }
         }
@@ -94,8 +102,8 @@ export default Vue.extend({
   apollo: {
     user: {
       query: gql`
-        {
-          user(login: "vikas0sharma") {
+       query getUser($id: String!) {
+          user(login: $id) {
             login
             followers(first: 10) {
               nodes {
@@ -115,6 +123,9 @@ export default Vue.extend({
           }
         }
       `,
+      variables: function () {
+        return { id: this.userName };
+      },
     },
   },
 });

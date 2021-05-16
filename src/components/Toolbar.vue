@@ -8,6 +8,9 @@
       <v-text-field
         hide-details
         single-line
+        v-model="searchText"
+        placeholder="Enter Github User name and press enter. eg: 'vikas0sharma'"
+        v-on:change="$root.$emit('search', searchText)"
         append-icon="mdi-magnify"
       ></v-text-field>
 
@@ -48,14 +51,8 @@ import Vue from "vue";
 export default Vue.extend({
   name: "Toolbar",
   data: () => ({
-    drawer: false,
-    group: null,
-  }),
-  watch: {
-    group() {
-      this.drawer = false;
-    },
-  },
+    searchText: '',
+  })
 });
 </script>
 <style>

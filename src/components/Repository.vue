@@ -7,7 +7,22 @@
       indeterminate
     ></v-progress-circular>
   </div>
-  <highcharts v-else :options="chartOptions"></highcharts>
+  <div v-else>
+    <v-row>
+      <v-col cols="4">
+        <v-slider
+          class="mt-10"
+          v-model="date"
+          label="Contribution from:"
+          min="2015"
+          max="2020"
+          thumb-color="red"
+          thumb-label="always"
+        ></v-slider>
+      </v-col>
+    </v-row>
+    <highcharts :options="chartOptions"></highcharts>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,6 +34,8 @@ export default Vue.extend({
   components: {},
   data: () => ({
     user: <any>null,
+    date: 2019,
+    userName: "vikas0sharma",
     chartOptions: {
       chart: {
         type: "pie",
@@ -34,6 +51,11 @@ export default Vue.extend({
       ],
     },
   }),
+  mounted() {
+    this.$root.$on("search", (user: string) => {
+      this.userName = user;
+    });
+  },
   watch: {
     user: function (n, o) {
       this.chartOptions.series[0].data = n.contributionsCollection.commitContributionsByRepository.map(
@@ -47,9 +69,9 @@ export default Vue.extend({
   apollo: {
     user: {
       query: gql`
-        {
-          user(login: "vikas0sharma") {
-            contributionsCollection(from: "2019-12-01T10:15:30Z") {
+        query getUser($id: String!, $date: DateTime!) {
+          user(login: $id) {
+            contributionsCollection(from: $date) {
               commitContributionsByRepository(maxRepositories: 10) {
                 repository {
                   name
@@ -62,6 +84,12 @@ export default Vue.extend({
           }
         }
       `,
+      variables: function () {
+        return {
+          id: this.userName,
+          date: `${this.date}-01-01T10:15:30Z`,
+        };
+      },
     },
   },
 });
