@@ -7,7 +7,24 @@
       indeterminate
     ></v-progress-circular>
   </div>
-  <highcharts v-else :options="chartOptions"></highcharts>
+  <div v-else>
+
+<v-row>
+  <v-col cols="4">
+      <v-slider
+        class="mt-10"
+        v-model="date"
+        label="Contribution from:"
+        min="2015"
+        max="2020"
+        thumb-color="red"
+        thumb-label="always"
+      ></v-slider>
+  </v-col>
+</v-row>
+
+    <highcharts :options="chartOptions"></highcharts>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,6 +36,7 @@ export default Vue.extend({
   components: {},
   data: () => ({
     user: <any>null,
+    date: 2019,
     chartOptions: {
       chart: {
         type: "spline",
@@ -44,9 +62,9 @@ export default Vue.extend({
   apollo: {
     user: {
       query: gql`
-        {
+         query getUser($date: DateTime!){
           user(login: "vikas0sharma") {
-            contributionsCollection(from: "2019-12-01T10:15:30Z") {
+            contributionsCollection(from: $date) {
               contributionCalendar {
                 weeks {
                   contributionDays {
@@ -61,6 +79,11 @@ export default Vue.extend({
           }
         }
       `,
+      variables:function() {
+        return{ 
+          date: `${this.date}-01-01T10:15:30Z`
+        }
+      },
     },
   },
 });
