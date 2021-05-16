@@ -23,6 +23,10 @@
         <v-icon color="red darken-2">mdi-source-repository</v-icon>
       </v-btn>
 
+      <v-btn icon to="/followers">
+        <v-icon color="light-blue darken-3">mdi-graph</v-icon>
+      </v-btn>
+
       <v-btn
         color="black"
         icon
