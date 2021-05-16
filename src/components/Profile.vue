@@ -1,10 +1,13 @@
 <template>
-  <v-skeleton-loader
-    v-if="!user"
-    class="mx-auto"
-    max-width="400"
-    type="card, list-item-two-line"
-  ></v-skeleton-loader>
+  <div class="text-center" v-if="!user" max-width="400">
+    <v-progress-circular
+      v-if="true"
+      :size="400"
+      color="primary"
+      indeterminate
+    ></v-progress-circular>
+  </div>
+
   <v-card v-else class="mx-auto" max-width="400">
     <v-avatar color="grey" size="200">
       <v-img :src="user.avatarUrl"></v-img>
@@ -29,7 +32,7 @@ export default Vue.extend({
   props: {
     msg: String,
   },
-  data: ()=> ({
+  data: () => ({
     user: null,
   }),
   apollo: {

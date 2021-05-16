@@ -1,6 +1,14 @@
 <template>
   <div>
-    <highcharts v-if="user" :options="graph"></highcharts>
+      <div class="text-center" v-if="!user" max-width="400">
+    <v-progress-circular
+      v-if="true"
+      :size="400"
+      color="primary"
+      indeterminate
+    ></v-progress-circular>
+  </div>
+    <highcharts v-else :options="graph"></highcharts>
   </div>
 </template>
 
